@@ -8,8 +8,99 @@
 html,
 body {
   @apply bg-white dark:bg-gray-950;
+  @apply text-slate-900 dark:text-slate-100;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+}
+
+body {
+  @apply m-0 font-sans;
+}
+
+a {
+  @apply text-inherit;
+}
+
+.page-shell {
+  @apply min-h-screen bg-slate-50 px-4 py-8 dark:bg-slate-950;
+}
+
+.page-card {
+  @apply mx-auto w-full max-w-5xl rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 md:p-8;
+}
+
+.note-link {
+  @apply rounded-xl border border-slate-200 px-4 py-3 text-base font-medium transition hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:hover:border-slate-600 dark:hover:bg-slate-800;
+}
+
+.note-back {
+  @apply inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800;
+}
+
+.note-markdown {
+  @apply mt-6 space-y-4 break-words leading-7;
+}
+
+.note-markdown h1 {
+  @apply text-3xl font-semibold;
+}
+
+.note-markdown h2 {
+  @apply mt-8 text-2xl font-semibold;
+}
+
+.note-markdown h3 {
+  @apply mt-6 text-xl font-semibold;
+}
+
+.note-markdown p,
+.note-markdown ul,
+.note-markdown ol,
+.note-markdown table,
+.note-markdown blockquote {
+  @apply my-4;
+}
+
+.note-markdown ul,
+.note-markdown ol {
+  @apply pl-6;
+}
+
+.note-markdown ul {
+  @apply list-disc;
+}
+
+.note-markdown ol {
+  @apply list-decimal;
+}
+
+.note-markdown li {
+  @apply my-1;
+}
+
+.note-markdown pre {
+  @apply overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm text-slate-100;
+}
+
+.note-markdown code {
+  @apply rounded bg-slate-100 px-1.5 py-0.5 text-[0.95em] dark:bg-slate-800;
+}
+
+.note-markdown pre code {
+  @apply bg-transparent p-0;
+}
+
+.note-markdown table {
+  @apply block w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700;
+}
+
+.note-markdown thead {
+  @apply bg-slate-100 dark:bg-slate-800;
+}
+
+.note-markdown th,
+.note-markdown td {
+  @apply border border-slate-200 px-3 py-2 text-left align-top dark:border-slate-700;
 }

@@ -5,102 +5,522 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+:root {
+  --page-bg: #fff9fc;
+  --page-surface: rgba(255, 255, 255, 0.76);
+  --page-surface-strong: #ffffff;
+  --page-border: rgba(206, 177, 220, 0.38);
+  --text-main: #2a2038;
+  --text-soft: #6f6480;
+  --shadow-soft: 0 22px 60px rgba(138, 104, 177, 0.14);
+  --orb-blossom: rgba(255, 173, 208, 0.42);
+  --orb-mint: rgba(178, 244, 222, 0.42);
+  --orb-sky: rgba(174, 223, 255, 0.42);
+  --accent-blossom: #ff7cb2;
+  --accent-peach: #ff9f7a;
+  --accent-mint: #43c59e;
+  --accent-sky: #5ba9ff;
+}
+
+html.dark {
+  --page-bg: #120f1f;
+  --page-surface: rgba(24, 20, 41, 0.84);
+  --page-surface-strong: #1a1630;
+  --page-border: rgba(124, 106, 172, 0.38);
+  --text-main: #f5efff;
+  --text-soft: #b8adcb;
+  --shadow-soft: 0 24px 60px rgba(3, 2, 12, 0.44);
+  --orb-blossom: rgba(176, 73, 126, 0.28);
+  --orb-mint: rgba(64, 145, 123, 0.26);
+  --orb-sky: rgba(58, 111, 176, 0.28);
+  color-scheme: dark;
+}
+
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
-  @apply text-slate-900 dark:text-slate-100;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  min-height: 100%;
 }
 
 body {
-  @apply m-0 font-sans;
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top left, var(--orb-blossom), transparent 28%),
+    radial-gradient(circle at top right, var(--orb-mint), transparent 24%),
+    radial-gradient(circle at 80% 35%, var(--orb-sky), transparent 22%),
+    var(--page-bg);
 }
 
 a {
-  @apply text-inherit;
+  color: inherit;
+  text-decoration: none;
 }
 
-.page-shell {
-  @apply min-h-screen bg-slate-50 px-4 py-8 dark:bg-slate-950;
+.site-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 24px 16px 48px;
 }
 
-.page-card {
-  @apply mx-auto w-full max-w-5xl rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 md:p-8;
+.site-shell--reading {
+  padding-top: 18px;
 }
 
-.note-link {
-  @apply rounded-xl border border-slate-200 px-4 py-3 text-base font-medium transition hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:hover:border-slate-600 dark:hover:bg-slate-800;
+.floating-orb {
+  position: absolute;
+  z-index: 0;
+  width: 280px;
+  height: 280px;
+  border-radius: 999px;
+  filter: blur(12px);
+  pointer-events: none;
 }
 
-.note-back {
-  @apply inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800;
+.floating-orb--blossom {
+  top: -64px;
+  left: -72px;
+  background: var(--orb-blossom);
+}
+
+.floating-orb--mint {
+  top: 320px;
+  right: -72px;
+  background: var(--orb-mint);
+}
+
+.floating-orb--sky {
+  bottom: 40px;
+  left: 8%;
+  background: var(--orb-sky);
+}
+
+.home-stack,
+.reading-layout,
+.empty-state,
+.error-stack {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+.home-stack,
+.reading-layout {
+  width: min(1120px, 100%);
+}
+
+.home-stack {
+  display: grid;
+  gap: 20px;
+}
+
+.reading-card,
+.empty-state,
+.error-stack {
+  border: 1px solid var(--page-border);
+  background: var(--page-surface);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-soft);
+}
+
+.compact-header,
+.reading-toolbar__heading {
+  display: grid;
+  gap: 6px;
+}
+
+.compact-header__title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.compact-header__meta,
+.empty-state__body {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.reading-toolbar__actions,
+.notes-sidebar__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.theme-fab,
+.ghost-button,
+.sidebar-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--page-border);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--text-main);
+}
+
+html.dark .theme-fab,
+html.dark .ghost-button,
+html.dark .sidebar-link {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.theme-fab,
+.ghost-button {
+  gap: 10px;
+  padding: 12px 16px;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.theme-fab:hover,
+.ghost-button:hover,
+.note-card:hover {
+  transform: translateY(-1px);
+}
+
+.theme-fab:focus-visible,
+.ghost-button:focus-visible,
+.note-card:focus-visible,
+.sidebar-link:focus-visible {
+  outline: 2px solid var(--accent-sky);
+  outline-offset: 3px;
+}
+
+.theme-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 20;
+  box-shadow: 0 16px 36px rgba(10, 8, 20, 0.18);
+}
+
+.theme-fab__icon {
+  font-size: 1rem;
+}
+
+.theme-fab__label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.reading-card__title,
+.empty-state__title {
+  margin: 0;
+  font-size: clamp(1.45rem, 4vw, 2.35rem);
+  line-height: 1.08;
+}
+
+.note-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.note-card {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid var(--page-border);
+  background: var(--page-surface-strong);
+  box-shadow: 0 14px 30px rgba(110, 81, 141, 0.08);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+html.dark .note-card {
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.note-card__number {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.note-card__title,
+.sidebar-link__title {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.28;
+}
+
+.note-card--simple {
+  min-height: 120px;
+  align-content: space-between;
+}
+
+.note-grid--simple {
+  margin-top: 10px;
+}
+
+.home-stack--simple {
+  width: min(960px, 100%);
+  gap: 18px;
+}
+
+.reading-columns {
+  display: grid;
+  gap: 14px;
+}
+
+.notes-sidebar {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.notes-sidebar__header {
+  display: flex;
+}
+
+.notes-sidebar__nav {
+  display: grid;
+  gap: 8px;
+}
+
+.sidebar-link {
+  justify-content: start;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: var(--page-surface);
+}
+
+.sidebar-link--active {
+  border-color: rgba(91, 169, 255, 0.32);
+  background: var(--page-surface-strong);
+  box-shadow: 0 10px 24px rgba(91, 169, 255, 0.1);
+}
+
+.sidebar-link__number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.reading-card--simple {
+  padding: 22px;
+}
+
+.reading-layout {
+  display: grid;
+  gap: 14px;
+}
+
+.reading-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--page-border);
+}
+
+.ghost-button--compact {
+  padding-inline: 14px;
+}
+
+.ghost-button--wide {
+  width: fit-content;
+}
+
+.ghost-button--disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.ghost-button--disabled:hover {
+  transform: none;
+}
+
+.reading-card {
+  border-radius: 32px;
+  padding: 18px;
 }
 
 .note-markdown {
-  @apply mt-6 space-y-4 break-words leading-7;
+  margin-top: 24px;
+  color: var(--text-main);
+  line-height: 1.9;
+  word-break: break-word;
+  font-size: 1rem;
 }
 
-.note-markdown h1 {
-  @apply text-3xl font-semibold;
+.note-markdown h2,
+.note-markdown h3 {
+  margin-bottom: 0.85rem;
+  line-height: 1.18;
+}
+
+.note-markdown > :first-child {
+  margin-top: 0;
 }
 
 .note-markdown h2 {
-  @apply mt-8 text-2xl font-semibold;
+  margin-top: 3.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--page-border);
+  font-size: 1.65rem;
+  letter-spacing: -0.02em;
 }
 
 .note-markdown h3 {
-  @apply mt-6 text-xl font-semibold;
+  margin-top: 2rem;
+  font-size: 1.2rem;
 }
 
 .note-markdown p,
 .note-markdown ul,
 .note-markdown ol,
 .note-markdown table,
-.note-markdown blockquote {
-  @apply my-4;
+.note-markdown blockquote,
+.note-markdown pre {
+  margin: 1.15rem 0;
 }
 
 .note-markdown ul,
 .note-markdown ol {
-  @apply pl-6;
+  padding-left: 1.4rem;
 }
 
-.note-markdown ul {
-  @apply list-disc;
+.note-markdown p + ol,
+.note-markdown p + ul,
+.note-markdown p + pre,
+.note-markdown p + blockquote {
+  margin-top: 0.5rem;
 }
 
-.note-markdown ol {
-  @apply list-decimal;
+.note-markdown h2 + p,
+.note-markdown h3 + p {
+  margin-top: 0.2rem;
 }
 
-.note-markdown li {
-  @apply my-1;
-}
-
-.note-markdown pre {
-  @apply overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm text-slate-100;
+.note-markdown li + li {
+  margin-top: 0.45rem;
 }
 
 .note-markdown code {
-  @apply rounded bg-slate-100 px-1.5 py-0.5 text-[0.95em] dark:bg-slate-800;
+  border-radius: 10px;
+  background: rgba(120, 95, 160, 0.12);
+  padding: 0.18rem 0.42rem;
+  font-size: 0.95em;
+}
+
+html.dark .note-markdown code {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.note-markdown pre {
+  overflow-x: auto;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #1a1630;
+  padding: 18px 20px;
+  color: #f8f4ff;
+  line-height: 1.65;
 }
 
 .note-markdown pre code {
-  @apply bg-transparent p-0;
+  background: transparent;
+  padding: 0;
+  white-space: pre;
 }
 
 .note-markdown table {
-  @apply block w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700;
-}
-
-.note-markdown thead {
-  @apply bg-slate-100 dark:bg-slate-800;
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border-radius: 18px;
+  border: 1px solid var(--page-border);
 }
 
 .note-markdown th,
 .note-markdown td {
-  @apply border border-slate-200 px-3 py-2 text-left align-top dark:border-slate-700;
+  border: 1px solid var(--page-border);
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.note-markdown thead {
+  background: rgba(120, 95, 160, 0.08);
+}
+
+.note-markdown blockquote {
+  border-left: 4px solid rgba(120, 95, 160, 0.22);
+  margin-left: 0;
+  padding-left: 16px;
+  color: var(--text-soft);
+}
+
+.note-markdown > p:first-child {
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid var(--page-border);
+  background: rgba(255, 255, 255, 0.5);
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-soft);
+}
+
+html.dark .note-markdown > p:first-child {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.empty-state {
+  display: grid;
+  gap: 14px;
+  width: min(560px, 100%);
+  margin-top: 10vh;
+  padding: 28px;
+  border-radius: 28px;
+}
+
+.error-stack {
+  margin-top: 16px;
+  width: min(960px, 100%);
+  padding: 18px;
+  overflow-x: auto;
+  border-radius: 24px;
+}
+
+@media (min-width: 720px) {
+  .site-shell {
+    padding: 28px 24px 60px;
+  }
+
+  .note-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reading-columns {
+    grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .notes-sidebar {
+    position: sticky;
+    top: 24px;
+  }
+}
+
+@media (min-width: 1040px) {
+  .note-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

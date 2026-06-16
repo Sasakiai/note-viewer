@@ -9,6 +9,7 @@
   --page-bg: #fff9fc;
   --page-surface: rgba(255, 255, 255, 0.76);
   --page-surface-strong: #ffffff;
+  --page-surface-tint: rgba(255, 255, 255, 0.9);
   --page-border: rgba(206, 177, 220, 0.38);
   --text-main: #2a2038;
   --text-soft: #6f6480;
@@ -26,6 +27,7 @@ html.dark {
   --page-bg: #120f1f;
   --page-surface: rgba(24, 20, 41, 0.84);
   --page-surface-strong: #1a1630;
+  --page-surface-tint: rgba(30, 25, 51, 0.96);
   --page-border: rgba(124, 106, 172, 0.38);
   --text-main: #f5efff;
   --text-soft: #b8adcb;
@@ -183,7 +185,8 @@ html.dark .sidebar-link {
 
 .theme-fab:hover,
 .ghost-button:hover,
-.note-card:hover {
+.note-card:hover,
+.sidebar-link:hover {
   transform: translateY(-1px);
 }
 
@@ -225,6 +228,8 @@ html.dark .sidebar-link {
 }
 
 .note-card {
+  position: relative;
+  overflow: hidden;
   display: grid;
   gap: 10px;
   padding: 20px;
@@ -235,7 +240,8 @@ html.dark .sidebar-link {
   transition:
     transform 160ms ease,
     border-color 160ms ease,
-    box-shadow 160ms ease;
+    box-shadow 160ms ease,
+    background-color 160ms ease;
 }
 
 html.dark .note-card {
@@ -258,6 +264,56 @@ html.dark .note-card {
 .note-card--simple {
   min-height: 120px;
   align-content: space-between;
+  background: linear-gradient(180deg, var(--page-surface-strong), var(--page-surface-tint));
+}
+
+.note-card--simple::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  opacity: 0.95;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.note-card--simple::after {
+  content: "";
+  position: absolute;
+  right: -24px;
+  bottom: -24px;
+  width: 92px;
+  height: 92px;
+  border-radius: 999px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.note-grid--simple .note-card:nth-child(3n + 1)::before {
+  background: linear-gradient(135deg, #ff8cbc, #ffb495);
+}
+
+.note-grid--simple .note-card:nth-child(3n + 1)::after {
+  background: radial-gradient(circle, rgba(255, 140, 188, 0.92), transparent 70%);
+}
+
+.note-grid--simple .note-card:nth-child(3n + 2)::before {
+  background: linear-gradient(135deg, #7bd8c3, #8cd4ff);
+}
+
+.note-grid--simple .note-card:nth-child(3n + 2)::after {
+  background: radial-gradient(circle, rgba(123, 216, 195, 0.9), transparent 70%);
+}
+
+.note-grid--simple .note-card:nth-child(3n)::before {
+  background: linear-gradient(135deg, #a892ff, #ff9bc8);
+}
+
+.note-grid--simple .note-card:nth-child(3n)::after {
+  background: radial-gradient(circle, rgba(168, 146, 255, 0.88), transparent 70%);
 }
 
 .note-grid--simple {
@@ -282,6 +338,7 @@ html.dark .note-card {
 
 .notes-sidebar__header {
   display: flex;
+  overflow: visible;
 }
 
 .notes-sidebar__nav {
@@ -292,9 +349,11 @@ html.dark .note-card {
 .sidebar-link {
   justify-content: start;
   gap: 12px;
-  padding: 12px 14px;
-  border-radius: 18px;
+  padding: 10px 12px;
+  border-radius: 16px;
   background: var(--page-surface);
+  font-size: 0.88rem;
+  line-height: 1.2;
 }
 
 .sidebar-link--active {
@@ -304,13 +363,17 @@ html.dark .note-card {
 }
 
 .sidebar-link__number {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--text-soft);
 }
 
+.sidebar-link__title {
+  font-size: 0.88rem;
+}
+
 .reading-card--simple {
-  padding: 22px;
+  padding: 24px 28px;
 }
 
 .reading-layout {
@@ -328,12 +391,8 @@ html.dark .note-card {
   border-bottom: 1px solid var(--page-border);
 }
 
-.ghost-button--compact {
-  padding-inline: 14px;
-}
-
 .ghost-button--wide {
-  width: fit-content;
+  width: 100%;
 }
 
 .ghost-button--disabled {
@@ -353,9 +412,9 @@ html.dark .note-card {
 .note-markdown {
   margin-top: 24px;
   color: var(--text-main);
-  line-height: 1.9;
+  line-height: 1.92;
   word-break: break-word;
-  font-size: 1rem;
+  font-size: 1.03rem;
 }
 
 .note-markdown h2,
@@ -370,15 +429,23 @@ html.dark .note-card {
 
 .note-markdown h2 {
   margin-top: 3.4rem;
-  padding-top: 1.2rem;
+  padding-top: 1.35rem;
   border-top: 1px solid var(--page-border);
-  font-size: 1.65rem;
+  font-size: 1.72rem;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
 
+.note-markdown > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
 .note-markdown h3 {
-  margin-top: 2rem;
-  font-size: 1.2rem;
+  margin-top: 2.1rem;
+  font-size: 1.26rem;
+  font-weight: 650;
 }
 
 .note-markdown p,
@@ -393,6 +460,20 @@ html.dark .note-card {
 .note-markdown ul,
 .note-markdown ol {
   padding-left: 1.4rem;
+}
+
+.note-markdown ul {
+  list-style: none;
+}
+
+.note-markdown ol {
+  list-style: decimal;
+  padding-left: 1.7rem;
+}
+
+.note-markdown ol li::marker {
+  font-weight: 700;
+  color: var(--text-soft);
 }
 
 .note-markdown p + ol,
@@ -416,10 +497,7 @@ html.dark .note-card {
   background: rgba(120, 95, 160, 0.12);
   padding: 0.18rem 0.42rem;
   font-size: 0.95em;
-}
-
-html.dark .note-markdown code {
-  background: rgba(255, 255, 255, 0.08);
+  box-decoration-break: clone;
 }
 
 .note-markdown pre {
@@ -436,6 +514,12 @@ html.dark .note-markdown code {
   background: transparent;
   padding: 0;
   white-space: pre;
+  border-radius: 0;
+  box-decoration-break: slice;
+}
+
+.note-markdown pre * {
+  background: transparent;
 }
 
 .note-markdown table {
@@ -466,22 +550,6 @@ html.dark .note-markdown code {
   color: var(--text-soft);
 }
 
-.note-markdown > p:first-child {
-  width: fit-content;
-  border-radius: 999px;
-  border: 1px solid var(--page-border);
-  background: rgba(255, 255, 255, 0.5);
-  padding: 6px 10px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--text-soft);
-}
-
-html.dark .note-markdown > p:first-child {
-  background: rgba(255, 255, 255, 0.04);
-}
-
 .empty-state {
   display: grid;
   gap: 14px;
@@ -509,18 +577,36 @@ html.dark .note-markdown > p:first-child {
   }
 
   .reading-columns {
-    grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
-    align-items: start;
+    display: block;
   }
 
   .notes-sidebar {
-    position: sticky;
+    position: fixed;
     top: 24px;
+    width: 190px;
+    max-height: calc(100vh - 48px);
+    overflow: auto;
+  }
+
+  .reading-card--simple {
+    margin-left: 208px;
   }
 }
 
 @media (min-width: 1040px) {
+  .home-stack--simple {
+    width: min(1040px, 100%);
+  }
+
   .note-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .notes-sidebar {
+    width: 210px;
+  }
+
+  .reading-card--simple {
+    margin-left: 228px;
   }
 }

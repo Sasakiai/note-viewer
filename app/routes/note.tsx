@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 import { NotePage } from "../note-page";
-import { getAdjacentNotes, getNoteBySlug } from "../notes";
+import { getNoteBySlug } from "../notes";
 
 import type { Route } from "./+types/note";
 
@@ -38,7 +38,5 @@ export default function NoteRoute({ params }: Route.ComponentProps) {
     );
   }
 
-  const { previousNote, nextNote } = getAdjacentNotes(note.slug);
-
-  return <NotePage note={note} previousNote={previousNote} nextNote={nextNote} />;
+  return <NotePage note={note} />;
 }

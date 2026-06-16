@@ -1,3 +1,4 @@
+import { Children, isValidElement, type ReactNode } from "react";
 import { Link } from "react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -6,11 +7,29 @@ import { notes, type Note } from "./notes";
 
 type NotePageProps = {
   note: Note;
-  previousNote?: Note;
-  nextNote?: Note;
 };
 
-export function NotePage({ note, previousNote, nextNote }: NotePageProps) {
+function flattenText(children: ReactNode): string {
+  return Children.toArray(children)
+    .map((child) => {
+      if (typeof child === "string") {
+        return child;
+      }
+
+      if (typeof child === "number") {
+        return String(child);
+      }
+
+      if (isValidElement<{ children?: ReactNode }>(child)) {
+        return flattenText(child.props.children);
+      }
+
+      return "";
+    })
+    .join("");
+}
+
+export function NotePage({ note }: NotePageProps) {
   return (
     <main className="site-shell site-shell--reading">
       <div className="floating-orb floating-orb--peach" />
@@ -45,32 +64,25 @@ export function NotePage({ note, previousNote, nextNote }: NotePageProps) {
                 <span className="note-card__number">{String(note.order).padStart(2, "0")}</span>
                 <h1 className="reading-card__title">{note.title}</h1>
               </div>
-
-              <div className="reading-toolbar__actions">
-                {previousNote ? (
-                  <Link to={`/notes/${previousNote.slug}`} className="ghost-button ghost-button--compact">
-                    Poprzednia
-                  </Link>
-                ) : (
-                  <span className="ghost-button ghost-button--compact ghost-button--disabled">
-                    Poprzednia
-                  </span>
-                )}
-
-                {nextNote ? (
-                  <Link to={`/notes/${nextNote.slug}`} className="ghost-button ghost-button--compact">
-                    Następna
-                  </Link>
-                ) : (
-                  <span className="ghost-button ghost-button--compact ghost-button--disabled">
-                    Następna
-                  </span>
-                )}
-              </div>
             </header>
 
             <div className="note-markdown">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>{note.content}</ReactMarkdown>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  p({ children }) {
+                    const text = flattenText(children).trim();
+
+                    if (text === "#PJATK #ASD") {
+                      return null;
+                    }
+
+                    return <p>{children}</p>;
+                  },
+                }}
+              >
+                {note.content}
+              </ReactMarkdown>
             </div>
           </section>
         </div>

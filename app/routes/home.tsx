@@ -6,10 +6,10 @@ import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "asd-note | cute study shelf" },
+    { title: "asd-note" },
     {
       name: "description",
-      content: "Playful study shelf z notatkami ASD w light i dark mode.",
+      content: "",
     },
   ];
 }

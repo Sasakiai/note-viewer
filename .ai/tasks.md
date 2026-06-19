@@ -67,3 +67,5 @@
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 06
 - [x] Dodać pytania dla notatki 'Listy dowiązaniowe' w app/quiz-bank.ts
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 07
+- [x] Dodać pytania dla notatki 'Stos, kolejka i deque' w app/quiz-bank.ts
+- [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 08

@@ -53,3 +53,7 @@
 - [x] Zweryfikować typecheck i build po zmianach
 - [x] Dodać 8-10 pytań dla notatki 'Algorytmy' w app/quiz-bank.ts
 - [x] Uruchomić pełną weryfikację repo i sprawdzić typy
+- [x] Dodać pytania dla notatki 'Złożoność algorytmów' w app/quiz-bank.ts
+- [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 02
+- [x] Poprawić wyjaśnienia pytań w app/quiz-bank.ts tak, by tylko realnie dopowiadały sens odpowiedzi
+- [x] Uruchomić pełną weryfikację po korekcie wyjaśnień

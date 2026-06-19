@@ -75,3 +75,7 @@
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 10
 - [x] Dodać pytania dla notatki 'Najważniejsze operacje i złożoności' w app/quiz-bank.ts
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 11
+- [x] Usunąć backticki z odpowiedzi i odchudzić sformułowania pytań w app/quiz-bank.ts
+- [x] Uruchomić pełną weryfikację po czyszczeniu treści quizu
+- [x] Przejrzeć i uprościć brzmienie promptów quizowych w app/quiz-bank.ts
+- [x] Uruchomić pełną weryfikację po korekcie promptów

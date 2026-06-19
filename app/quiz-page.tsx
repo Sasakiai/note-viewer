@@ -48,6 +48,10 @@ type QuizSession = {
   questions: QuizQuestion[];
 };
 
+function optionLetter(index: number) {
+  return String.fromCharCode(65 + index);
+}
+
 function getVerdictLabel(evaluation: QuizEvaluation) {
   if (evaluation.verdict === "correct") {
     return "Poprawnie";
@@ -107,7 +111,7 @@ function QuestionAnswerInput(input: {
   if (question.type === "singleChoice" && question.options) {
     return (
       <div className="quiz-question-card__options">
-        {question.options.map((option) => (
+        {question.options.map((option, optionIndex) => (
           <label
             key={option.id}
             className={typeof answer === "string" && answer === option.id ? "quiz-choice quiz-choice--active" : "quiz-choice"}
@@ -120,7 +124,7 @@ function QuestionAnswerInput(input: {
               onChange={() => onChange(option.id)}
               disabled={disabled}
             />
-            <span className="quiz-choice__text">{option.label}</span>
+            <span className="quiz-choice__text">{`${optionLetter(optionIndex)}. ${option.label}`}</span>
           </label>
         ))}
       </div>
@@ -132,7 +136,7 @@ function QuestionAnswerInput(input: {
 
     return (
       <div className="quiz-question-card__options">
-        {question.options.map((option) => {
+        {question.options.map((option, optionIndex) => {
           const isChecked = selectedOptions.includes(option.id);
 
           return (
@@ -151,10 +155,10 @@ function QuestionAnswerInput(input: {
                 }}
                 disabled={disabled}
               />
-              <span className="quiz-choice__text">{option.label}</span>
-            </label>
-          );
-        })}
+                <span className="quiz-choice__text">{`${optionLetter(optionIndex)}. ${option.label}`}</span>
+              </label>
+            );
+          })}
       </div>
     );
   }

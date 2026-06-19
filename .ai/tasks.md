@@ -79,3 +79,6 @@
 - [x] Uruchomić pełną weryfikację po czyszczeniu treści quizu
 - [x] Przejrzeć i uprościć brzmienie promptów quizowych w app/quiz-bank.ts
 - [x] Uruchomić pełną weryfikację po korekcie promptów
+- [x] Dodać prefiksy A/B/C/D do opcji pytań zamkniętych
+- [x] Zmienić feedback oceny pytań zamkniętych tak, by pokazywał tekst odpowiedzi zamiast samych identyfikatorów
+- [x] Uruchomić pełną weryfikację po zmianach quizu

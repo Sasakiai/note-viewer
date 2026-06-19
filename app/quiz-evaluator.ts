@@ -19,6 +19,33 @@ function exactOptionMatch(answer: string[], expected: string[]) {
   return normalizedAnswer.every((value, index) => value === normalizedExpected[index]);
 }
 
+function optionLetter(index: number) {
+  return String.fromCharCode(65 + index);
+}
+
+function formatOptionLabel(question: QuizQuestion, optionId: string) {
+  if (!question.options) {
+    return optionId;
+  }
+
+  const optionIndex = question.options.findIndex((option) => option.id === optionId);
+
+  if (optionIndex === -1) {
+    return optionId;
+  }
+
+  const option = question.options[optionIndex];
+  return `${optionLetter(optionIndex)}. ${option.label}`;
+}
+
+function getClosedQuestionReferenceAnswer(question: QuizQuestion) {
+  if (!question.correctOptionIds || question.correctOptionIds.length === 0) {
+    return question.referenceAnswer;
+  }
+
+  return question.correctOptionIds.map((optionId) => formatOptionLabel(question, optionId)).join("; ");
+}
+
 function buildEvaluation(input: {
   question: QuizQuestion;
   verdict: QuizVerdict;
@@ -32,7 +59,10 @@ function buildEvaluation(input: {
   return {
     verdict,
     feedback,
-    referenceAnswer: question.referenceAnswer,
+    referenceAnswer:
+      question.type === "singleChoice" || question.type === "multiChoice"
+        ? getClosedQuestionReferenceAnswer(question)
+        : question.referenceAnswer,
     explanation: question.explanation,
     matchedPoints,
     missedPoints,
@@ -58,8 +88,8 @@ function evaluateSingleChoice(question: QuizQuestion, answer: SubmittedAnswer) {
     question,
     verdict: isCorrect ? "correct" : "incorrect",
     feedback: "",
-    matchedPoints: isCorrect ? [question.referenceAnswer] : [],
-    missedPoints: isCorrect ? [] : [question.referenceAnswer],
+    matchedPoints: isCorrect ? [getClosedQuestionReferenceAnswer(question)] : [],
+    missedPoints: isCorrect ? [] : [getClosedQuestionReferenceAnswer(question)],
     grader: "local",
   });
 }
@@ -81,7 +111,7 @@ function evaluateMultiChoice(question: QuizQuestion, answer: SubmittedAnswer) {
       question,
       verdict: "correct",
       feedback: "Pełna zgodność z poprawnym zbiorem odpowiedzi.",
-      matchedPoints: [question.referenceAnswer],
+      matchedPoints: question.correctOptionIds.map((optionId) => formatOptionLabel(question, optionId)),
       missedPoints: [],
       grader: "local",
     });
@@ -98,8 +128,8 @@ function evaluateMultiChoice(question: QuizQuestion, answer: SubmittedAnswer) {
     question,
     verdict,
     feedback: verdict === "partial" ? "Brakuje części poprawnych opcji." : "",
-    matchedPoints: matched,
-    missedPoints: [...wrong, ...missed],
+    matchedPoints: matched.map((optionId) => formatOptionLabel(question, optionId)),
+    missedPoints: [...wrong, ...missed].map((optionId) => formatOptionLabel(question, optionId)),
     grader: "local",
   });
 }

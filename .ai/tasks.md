@@ -61,3 +61,5 @@
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 03
 - [x] Dodać pytania dla notatki 'Wyszukiwanie' w app/quiz-bank.ts
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 04
+- [x] Dodać pytania dla notatki 'Sortowanie' w app/quiz-bank.ts
+- [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 05

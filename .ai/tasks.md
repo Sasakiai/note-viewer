@@ -57,3 +57,5 @@
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 02
 - [x] Poprawić wyjaśnienia pytań w app/quiz-bank.ts tak, by tylko realnie dopowiadały sens odpowiedzi
 - [x] Uruchomić pełną weryfikację po korekcie wyjaśnień
+- [x] Dodać pytania dla notatki 'Notacja asymptotyczna' w app/quiz-bank.ts
+- [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 03

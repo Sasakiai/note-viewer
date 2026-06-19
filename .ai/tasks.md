@@ -65,3 +65,5 @@
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 05
 - [x] Dodać pytania dla notatki 'Abstrakcyjne i konkretne struktury danych' w app/quiz-bank.ts
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 06
+- [x] Dodać pytania dla notatki 'Listy dowiązaniowe' w app/quiz-bank.ts
+- [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 07

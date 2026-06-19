@@ -2,6 +2,7 @@
 
 ## In Progress
 
+- [ ] Uruchomić pełną weryfikację po dodaniu pytań do notatki 09
 
 ## To Do
 
@@ -69,3 +70,4 @@
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 07
 - [x] Dodać pytania dla notatki 'Stos, kolejka i deque' w app/quiz-bank.ts
 - [x] Uruchomić pełną weryfikację po dodaniu pytań do notatki 08
+- [x] Dodać pytania dla notatki 'Kolejka priorytetowa i kopiec binarny' w app/quiz-bank.ts

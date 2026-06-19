@@ -25,6 +25,11 @@ export default function Home() {
         <header className="compact-header">
           <h1 className="compact-header__title">Notatki ASD</h1>
           <p className="compact-header__meta">{notes.length} tematów</p>
+          <div className="home-stack__actions">
+            <Link to="/quiz" className="ghost-button">
+              Start quizu
+            </Link>
+          </div>
         </header>
 
         <div className="note-grid note-grid--simple">

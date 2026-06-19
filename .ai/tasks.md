@@ -40,3 +40,10 @@
 - [x] Dopisać uzasadnienia stabilności w app/assets/05. Sortowanie.md
 - [x] Przerobić sekcję doboru struktur i dodać upheap/downheap w app/assets/12. Podsumowanie.md
 - [x] Uruchomić weryfikację repo po zmianach
+- [x] Dodać model danych quizów, bank pytań i lokalny evaluator
+- [x] Dodać routing i UI dla /quiz oraz /notes/:slug/quiz
+- [x] Dodać server action /quiz/check z integracją Gemini dla openText
+- [x] Zweryfikować całość typecheck/build
+- [x] Odtworzyć problemy layoutu quizu w przeglądarce i zebrać konkretne hotspoty
+- [x] Poprawić copy, spacing, wyrównania i feedback w modułie quizu
+- [x] Dodać czytelny wskaźnik źródła oceny lokalna/Gemini i zweryfikować render

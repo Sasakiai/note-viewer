@@ -42,6 +42,9 @@ export function NotePage({ note }: NotePageProps) {
               <Link to="/" className="ghost-button ghost-button--wide">
                 Wszystkie notatki
               </Link>
+              <Link to={`/notes/${note.slug}/quiz`} className="ghost-button ghost-button--wide">
+                Quiz z tego działu
+              </Link>
             </div>
 
             <nav className="notes-sidebar__nav" aria-label="Lista notatek">

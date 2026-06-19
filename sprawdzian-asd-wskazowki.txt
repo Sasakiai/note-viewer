@@ -1,0 +1,38 @@
+Wskazówki pomocnicze do przygotowania do części teoretycznej egzaminu z ASD:
+
+1) poprawność algorytmu
+
+Należy bardzo dobrze znać i rozumieć logiczny sens kilku kluczowych definicji, które pojawiają się w tym wykładzie (m.in. całkowita/częściowa poprawność, własność stopu, specyfikacja, warunek początkowy/końcowy, niezmiennik).
+
+Dobrze jest też przećwiczyć uzasadnianie własności stopu na kilku algorytmach i potem, jeśli algorytm jest prosty, również udowodnienie częściowej poprawności za pomocą niezmiennika (choć to ostatnie raczej nie będzie wymagane na egzaminie do oceny 4.0)
+
+2) złożoność algorytmu
+
+Należy m.in. bardzo dobrze znać i rozumieć sens logiczny definicji złożoności czasowej i pamięciowej, operacji dominującej, rozmiaru danych, złożoności pesymistycznej i przeciętnej oraz znać oznaczenia (W(), A(), S()).
+Należy też znać definicje i sens wszystkich 5 odmian notacji asymptotycznej (O (duże i małe), \Theta, \Omega (duże i małe), która służy do pominięcia nieistotnych szczegółów przy wyznaczaniu wzoru na złożoność.
+
+Należy też umieć określić rząd złożoności danej funkcji za pomocą w/w notacji.
+
+Dobrze jest przećwiczyć zastosowanie notacji (np. O()) dla jakichś prostych funkcji, poprzez udowodnienie tego z definicji (np. udowodnić, że n^2 + 5n + 2 = O(n^2), ale nie jest = O(n), etc.). Pozwala to lepiej zrozumieć tę notację.
+
+W szczególności należy wiedzieć jaka jest hierarchia rzędów funkcji wśród tych spotykanych na kursie (stała O(1), logarytmiczna, dowolna potęga n (w tym ułamkowe), funkcje wykładnicze).
+
+Dobrze jest też przećwiczyć określanie złożoności czasowej i pamięciowej na kilku algorytmach, używając notacji asymptotycznej i nie zapominając o (niezbędnym) wyjaśnieniu co jest rozmiarem danych (czasem może to być kilka zmiennych) i jakie operacje można uznać za dominujące (czasem też może ich być kilka jeśli jest np. kilka następujących po sobie pętli).
+
+3) wyszukiwanie
+M.in. dokładnie rozumieć działanie i specyfikacje (czyli m.in. co zakładają o danych wejściowych) oraz jak działałyby na różnych reprezentacjach ciągu (np. na tablicy czy na liście dowiązaniowej) zwykłego wyszukiwania sekwencyjego, skoki-co-k oraz wyszukiwania binarnego (binarySearch), oraz rozumieć jakie mają złożoności obliczeniowe, w tym (dla skoki-co-k) jak to zależy od parametru k (długość skoku).
+Dobrze jest też rozumieć dla jakich danych algorytm działa najdłużej (i jak).
+
+4) sortowanie
+Dokładnie znać działanie poszczególnych omawianych algorytmów sortowania: selection, insertion, merge sort (i funkcji merge), quicksort (i funkcji partition), count sort i radix sort, a nie tylko na pamięć ich złożoności. Zastanawiać się, dla jakich danych działają najwolniej a dla jakich najszybciej, jak działają na tablicach, a jak działałyby na listach dowiązaniowych, etc.
+Zastanawiać się nad porównaniem każdej pary z omawianych algorytmów (co jest lepsze, co gorsze, etc.)
+Rozumieć własność stabilności sortowania i które algorytmy ją mają i dlaczego.
+
+Wiedzieć jakie jest matematyczne ograniczenie dolne na złożoność sortowania przez porównania.
+
+5) abstrakcyjne struktury danych (ads)
+Dobrze rozumieć pojęcie abstrakcyjnej struktury danych i odróżniać je od "konkretnych" struktur danych (np. tablic, list czy drzew binarnych, etc.)
+Znać definicje i efektywne implementacje omawianych abstrakcyjnych struktur danych (stos, kolejka, kolejka podwójna (deque), kolejka priorytetowa, słownik)
+Zastanawiać się nad tym jak możnaby zaimplementować np. stos czy kolejkę na tablicy a jak na liście (jedno czy dwukierunkowej?) i jakie byłyby złożoności operacji)
+
+W szczególności znać i rozumieć efektywną implementację kolejki priorytetowej (jako kopca binarnego) i 2 omawiane efektywne implementacje słownika (jako tablicy mieszającej albo drzewa BST), znać też dokładne definicje i własności kopca binarnego i drzewa BST oraz jak działają operacje na nich.

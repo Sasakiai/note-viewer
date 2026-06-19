@@ -1,0 +1,29 @@
+1. Definicja częściowej poprawności, operacji dominujących. Złożoność czasowa i
+pamięciowa dla merge i countsort. Przebieg operacji funkcji delMin. Napisać
+pseudokod dla funkcji która bierze wskaźnik listy jednokierunkowej i zwraca
+sume wartości wszystkich węzłów.  Kod countsorta był podany i trzeba było
+powiedzieć co zawiera tablica result, czy ma własność stopu, złożoność czasowa i
+pamięciowa.
+
+Był opis wymagań jakiejś firmy i trzeba było przedstawić strukture danych która
+by pod to pasowała. (Klient kupuje napój w automacie, ma być o tym zapisana
+informacja, możliwość usunięcia i podejżenia najdawniej dodanej rzeczy, więc
+hashmapa i stos jako wartość pasowały idealnie)
+
+
+
+2. 5 definicji 1:1 z wejściówki
+Definicja:
+częściowego porządku
+operacji dominującej
+Złożoność czasowa (pesymistyczna i średnia) oraz pamięciowa MergeSort
+Przebieg działania operacji delMin na kopcu binarnym
+coś, nie pamiętam
+
+
+
+potem analiza pseudokodu, podać rezultat w podpunkcie A, a w B podać warunek stopu oraz złożoność czasową i pamięciową
+
+Pisanie pseudokodu
+
+Zadanie z tresicią typu: jakiej asd użyć do rozwiązania tego problemu

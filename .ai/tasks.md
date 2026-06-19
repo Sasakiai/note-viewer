@@ -11,6 +11,8 @@
 
 ## Done
 
+- [x] Zweryfikować spójność notatki po zmianie
+- [x] Rozszerzyć `app/assets/11. Najważniejsze operacje i złożoności.md` o złożoności czasowe i pamięciowe algorytmów
 - [x] Run verification commands
 - [x] Polish card borders and note navigation chrome
 - [x] Fix markdown divider and code background issues
@@ -32,3 +34,9 @@
 - [x] Dodać render markdown i prosty layout
 - [x] Zweryfikować typecheck i build
 - [x] Zrobić proste trasy dla obu notatek
+- [x] Uzupełnić notatki 01, 03, 04, 05 i 08 o brakujące treści pod sprawdzian
+- [x] Dodać nową notatkę app/assets/12. Podsumowanie.md
+- [x] Zweryfikować pokrycie wskazówek i uruchomić pełną weryfikację repo
+- [x] Dopisać uzasadnienia stabilności w app/assets/05. Sortowanie.md
+- [x] Przerobić sekcję doboru struktur i dodać upheap/downheap w app/assets/12. Podsumowanie.md
+- [x] Uruchomić weryfikację repo po zmianach

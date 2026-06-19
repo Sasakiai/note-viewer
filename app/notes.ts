@@ -9,6 +9,7 @@ import note08 from "./assets/08. Stos, kolejka i deque.md?raw";
 import note09 from "./assets/09. Kolejka priorytetowa i kopiec binarny.md?raw";
 import note10 from "./assets/10. Słownik, HashMap, BST i AVL.md?raw";
 import note11 from "./assets/11. Najważniejsze operacje i złożoności.md?raw";
+import note12 from "./assets/12. Podsumowanie.md?raw";
 
 export type Note = {
   slug: string;
@@ -83,6 +84,12 @@ export const notes: Note[] = [
     title: "Najważniejsze operacje i złożoności",
     content: note11,
     order: 11,
+  },
+  {
+    slug: "podsumowanie",
+    title: "Podsumowanie",
+    content: note12,
+    order: 12,
   },
 ];
 

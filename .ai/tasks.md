@@ -47,3 +47,9 @@
 - [x] Odtworzyć problemy layoutu quizu w przeglądarce i zebrać konkretne hotspoty
 - [x] Poprawić copy, spacing, wyrównania i feedback w modułie quizu
 - [x] Dodać czytelny wskaźnik źródła oceny lokalna/Gemini i zweryfikować render
+- [x] Odciąć quiz od layoutu notatek i naprawić wyrównania headera oraz wyniku
+- [x] Przebudować feedback i ekran wyniku quizu zgodnie z nowym układem sekcji
+- [x] Dodać lucide-react i użyć ikon w quizie
+- [x] Zweryfikować typecheck i build po zmianach
+- [x] Dodać 8-10 pytań dla notatki 'Algorytmy' w app/quiz-bank.ts
+- [x] Uruchomić pełną weryfikację repo i sprawdzić typy

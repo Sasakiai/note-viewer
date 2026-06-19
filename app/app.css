@@ -439,6 +439,7 @@ html.dark .note-card {
 .quiz-setup,
 .quiz-summary,
 .quiz-feedback,
+.quiz-summary-block,
 .quiz-question-card {
   border: 1px solid var(--page-border);
   background: var(--page-surface);
@@ -451,6 +452,10 @@ html.dark .note-card {
 .quiz-summary,
 .quiz-question-card {
   padding: 22px;
+}
+
+.quiz-panel {
+  padding: 24px 28px;
 }
 
 .quiz-setup {
@@ -539,7 +544,9 @@ html.dark .note-card {
 .quiz-question-card__body,
 .quiz-inline-field__hint,
 .quiz-summary__question-meta,
-.quiz-reference-link {
+.quiz-reference-link,
+.quiz-summary-block__meta,
+.quiz-summary-block__empty {
   line-height: 1.7;
 }
 
@@ -633,6 +640,9 @@ html.dark .note-card {
 .quiz-feedback__header,
 .quiz-feedback__badges,
 .quiz-reference-link-wrap,
+.quiz-feedback__title-wrap,
+.quiz-feedback__section-title,
+.quiz-summary-block__title-wrap,
 .quiz-header__actions,
 .quiz-summary__actions,
 .quiz-summary__question-topline {
@@ -645,6 +655,17 @@ html.dark .note-card {
 .quiz-feedback__header,
 .quiz-summary__question-topline {
   justify-content: space-between;
+}
+
+.quiz-summary__eyebrow,
+.quiz-summary-block__meta,
+.quiz-summary-block__empty {
+  color: var(--text-soft);
+}
+
+.quiz-summary__eyebrow {
+  font-size: 0.88rem;
+  font-weight: 700;
 }
 
 .quiz-feedback__section {
@@ -669,10 +690,28 @@ html.dark .note-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   border-radius: 999px;
   padding: 8px 12px;
   font-size: 0.82rem;
   font-weight: 700;
+}
+
+.quiz-icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
+.quiz-icon--badge {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.quiz-icon--stat,
+.quiz-icon--section {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .quiz-source-badge {
@@ -750,6 +789,27 @@ html.dark .quiz-result-badge--incorrect {
   gap: 16px;
 }
 
+.quiz-summary__sections {
+  display: grid;
+  gap: 18px;
+}
+
+.quiz-summary-block {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+}
+
+.quiz-summary-block__header {
+  display: grid;
+  gap: 8px;
+}
+
+.quiz-summary-block__title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
 .quiz-summary__question {
   display: grid;
   gap: 10px;
@@ -800,7 +860,9 @@ html.dark .quiz-result-badge--incorrect {
 @media (max-width: 720px) {
   .quiz-question-card,
   .quiz-setup,
-  .quiz-summary {
+  .quiz-summary,
+  .quiz-summary-block,
+  .quiz-panel {
     padding: 18px;
   }
 

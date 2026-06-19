@@ -31,7 +31,7 @@ export default function QuizRoute() {
       description="Pytania z całego materiału. Zamknięte odpowiedzi są sprawdzane automatycznie, a otwarte mogą być oceniane z pomocą Gemini."
       questions={getAllQuizQuestions()}
       backTo="/"
-      backLabel="Wróć do notatek"
+      backLabel="Wróć na stronę główną"
       emptyTitle="Nie ma jeszcze pytań"
       emptyBody="Dodaj pytania do modułu testów i wróć tutaj ponownie."
       modeOptions={modeOptions}
